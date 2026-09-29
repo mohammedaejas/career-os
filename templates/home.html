@@ -49,11 +49,21 @@
         </div>
 
     </div>
+
+
 <h2>My Tasks</h2>
 
 <ul>
     {% for task in tasks %}
-        <li>{{ task.title }}</li>
+        <li>
+            {{ task.title }}
+
+            {% if task.completed %}
+                - Completed ✅
+            {% else %}
+                - Pending ⏳
+            {% endif %}
+        </li>
     {% empty %}
         <li>No tasks yet.</li>
     {% endfor %}
