@@ -49,6 +49,14 @@
         </div>
 
     </div>
+<h2>My Tasks</h2>
 
+<ul>
+    {% for task in tasks %}
+        <li>{{ task.title }}</li>
+    {% empty %}
+        <li>No tasks yet.</li>
+    {% endfor %}
+</ul>
 </body>
 </html>
