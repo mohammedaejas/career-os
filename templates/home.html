@@ -53,20 +53,29 @@
 
 <h2>My Tasks</h2>
 
+
+
 <ul>
     {% for task in tasks %}
         <li>
-            {{ task.title }}
+            <strong>{{ task.title }}</strong>
 
             {% if task.completed %}
                 - Completed ✅
             {% else %}
                 - Pending ⏳
             {% endif %}
+
+            {% if task.description %}
+                <p>{{ task.description }}</p>
+            {% endif %}
+
+            <small>Created: {{ task.created_at }}</small>
         </li>
     {% empty %}
         <li>No tasks yet.</li>
     {% endfor %}
+
 </ul>
 </body>
 </html>
