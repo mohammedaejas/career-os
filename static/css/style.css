@@ -32,4 +32,57 @@ header {
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+/* My Tasks Section */
+
+.task-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.task-section h2 {
+    text-align: center;
+}
+
+.task-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.task-form button {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-item {
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+}
+
+.task-item strong {
+    font-size: 18px;
+}
+
+.task-item p {
+    margin: 10px 0;
+}
+
+.task-item small {
+    color: #666;
 }

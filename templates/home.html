@@ -51,31 +51,53 @@
     </div>
 
 
-<h2>My Tasks</h2>
+<div class="task-section">
+
+    <h2>My Tasks</h2>
+
+    <form method="POST" class="task-form">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Add Task</button>
+    </form>
+
+    <ul class="task-list">
+
+        {% for task in tasks %}
+
+            <li class="task-item">
+
+                <strong>{{ task.title }}</strong>
+
+                {% if task.completed %}
+                    - Completed ✅
+                {% else %}
+                    - Pending ⏳
+                {% endif %}
+
+                {% if task.description %}
+                    <p>{{ task.description }}</p>
+                {% endif %}
+
+                <small>Created: {{ task.created_at }}</small>
+
+            </li>
+
+        {% empty %}
+
+            <li class="task-item">
+                No tasks yet.
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+</div>
 
 
 
-<ul>
-    {% for task in tasks %}
-        <li>
-            <strong>{{ task.title }}</strong>
-
-            {% if task.completed %}
-                - Completed ✅
-            {% else %}
-                - Pending ⏳
-            {% endif %}
-
-            {% if task.description %}
-                <p>{{ task.description }}</p>
-            {% endif %}
-
-            <small>Created: {{ task.created_at }}</small>
-        </li>
-    {% empty %}
-        <li>No tasks yet.</li>
-    {% endfor %}
-
-</ul>
 </body>
 </html>
