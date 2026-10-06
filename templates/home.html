@@ -1,103 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% load static %}
+        {% load static %}
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <title>Career OS</title>
-</head>
+        <title>Career OS</title>
+    </head>
 
-<body>
+    <body>
 
-    <header>
-        <h1>Career OS</h1>
-        <p>Your Personal Career Management System</p>
-    </header>
+        <header>
+            <h1>Career OS</h1>
+            <p>Your Personal Career Management System</p>
+        </header>
 
-    <div class="container">
+        <div class="container">
 
-        <h2>Welcome to Career OS</h2>
+            <h2>Welcome to Career OS</h2>
 
-        <p>Build, manage, and track your career journey.</p>
+            <p>Build, manage, and track your career journey.</p>
 
-        <div class="card-container">
+            <div class="card-container">
 
-            <div class="card">
-                <h3>💼 Jobs</h3>
-                <p>Track your job applications.</p>
-            </div>
+                <div class="card">
+                    <h3>💼 Jobs</h3>
+                    <p>Track your job applications.</p>
+                </div>
 
-            <div class="card">
-                <h3>🧠 Skills</h3>
-                <p>Manage and develop your skills.</p>
-            </div>
+                <div class="card">
+                    <h3>🧠 Skills</h3>
+                    <p>Manage and develop your skills.</p>
+                </div>
 
-            <div class="card">
-                <h3>🎯 Goals</h3>
-                <p>Set and organize your career goals.</p>
-            </div>
+                <div class="card">
+                    <h3>🎯 Goals</h3>
+                    <p>Set and organize your career goals.</p>
+                </div>
 
-            <div class="card">
-                <h3>📈 Progress</h3>
-                <p>Track your career progress.</p>
+                <div class="card">
+                    <h3>📈 Progress</h3>
+                    <p>Track your career progress.</p>
+                </div>
+
             </div>
 
         </div>
 
+
+    <div class="task-section">
+
+        <h2>My Tasks</h2>
+
+        <form method="POST" class="task-form">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">Add Task</button>
+        </form>
+
+        <ul class="task-list">
+
+            {% for task in tasks %}
+
+                <li class="task-item">
+
+                    <strong>{{ task.title }}</strong>
+
+                    {% if task.completed %}
+                        - Completed ✅
+                    {% else %}
+                        - Pending ⏳
+                    {% endif %}
+
+                    {% if task.description %}
+                        <p>{{ task.description }}</p>
+                    {% endif %}
+
+                    <small>Created: {{ task.created_at }}</small>
+
+                </li>
+
+            {% empty %}
+
+                <li class="task-item">
+                    No tasks yet.
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
     </div>
 
 
-<div class="task-section">
 
-    <h2>My Tasks</h2>
-
-    <form method="POST" class="task-form">
-        {% csrf_token %}
-
-        {{ form.as_p }}
-
-        <button type="submit">Add Task</button>
-    </form>
-
-    <ul class="task-list">
-
-        {% for task in tasks %}
-
-            <li class="task-item">
-
-                <strong>{{ task.title }}</strong>
-
-                {% if task.completed %}
-                    - Completed ✅
-                {% else %}
-                    - Pending ⏳
-                {% endif %}
-
-                {% if task.description %}
-                    <p>{{ task.description }}</p>
-                {% endif %}
-
-                <small>Created: {{ task.created_at }}</small>
-
-            </li>
-
-        {% empty %}
-
-            <li class="task-item">
-                No tasks yet.
-            </li>
-
-        {% endfor %}
-
-    </ul>
-
-</div>
-
-
-
-</body>
-</html>
+    </body>
+    </html>
