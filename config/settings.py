@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
      'tasks',
+     'authentication',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,8 @@ MAILERS = {
     },
 }
 
+
+# Authentication redirects
+LOGIN_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/auth/login/'
