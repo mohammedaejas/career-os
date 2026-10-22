@@ -2,6 +2,13 @@ from django.db import models
 
 
 class Task(models.Model):
+    owner = models.ForeignKey(
+        "auth.User",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="career_tasks",
+    )
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     completed = models.BooleanField(default=False)
