@@ -38,13 +38,16 @@
 
                 <small>Created: {{ task.created_at }}</small>
 
-<a href="{% url 'toggle_task' task.id %}">
-    {% if task.completed %}
-        Mark as Pending
-    {% else %}
-        Mark as Completed
-    {% endif %}
-</a>
+<form method="POST" action="{% url 'toggle_task' task.id %}">
+    {% csrf_token %}
+    <button type="submit">
+        {% if task.completed %}
+            Mark as Pending
+        {% else %}
+            Mark as Completed
+        {% endif %}
+    </button>
+</form>
 <a href="{% url 'edit_task' task.id %}">Edit</a>
             </li>
         {% empty %}

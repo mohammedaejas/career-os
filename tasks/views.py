@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404, render, redirect
 
 from .models import Task
@@ -27,13 +28,13 @@ def task_list(request):
 
 
 @login_required
+@require_POST
 def toggle_task(request, task_id):
     task = get_object_or_404(
         Task, id=task_id, owner=request.user
     )
     task.completed = not task.completed
     task.save(update_fields=["completed"])
-
     return redirect("task_list")
 
 
