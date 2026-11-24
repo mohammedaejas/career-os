@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'accounts',
      'tasks',
     'jobs',
-     'authentication',
+    'authentication',
+    'job_discovery',
 ]
 
 MIDDLEWARE = [
