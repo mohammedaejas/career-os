@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ job.job_title }} | Career OS</title>
+</head>
+<body>
+
+    <header>
+        <h1>Career OS</h1>
+        <p>Discover opportunities. Build your future.</p>
+        <a href="{% url 'job_discovery' %}">Back to Job Discovery</a>
+    </header>
+
+    <main>
+        <h2>{{ job.job_title }}</h2>
+
+        <h3>{{ job.company_name }}</h3>
+
+        <p><strong>Location:</strong> {{ job.location }}</p>
+
+        <p><strong>Work Mode:</strong> {{ job.work_mode }}</p>
+
+        <p><strong>Experience Level:</strong> {{ job.experience_level }}</p>
+
+        <h3>Required Skills</h3>
+        <p>{{ job.required_skills }}</p>
+
+        <h3>Job Description</h3>
+        <p>{{ job.description }}</p>
+
+        {% if job.posted_at %}
+            <p><strong>Posted Date:</strong> {{ job.posted_at }}</p>
+        {% endif %}
+
+        <a href="{{ job.application_url }}" target="_blank" rel="noopener noreferrer">
+            Apply Now
+        </a>
+
+    </main>
+
+</body>
+</html>

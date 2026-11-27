@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Jobs | Career OS</title>
+</head>
+<body>
+
+    <header>
+        <h1>Career OS</h1>
+        <p>Discover opportunities. Build your future.</p>
+        <a href="/">Back to Dashboard</a>
+    </header>
+
+    <main>
+        <h2>Discover Job Opportunities</h2>
+
+        <form method="GET">
+            <input
+                type="text"
+                name="q"
+                placeholder="Search job title or company"
+                value="{{ query }}"
+            >
+
+            <input
+                type="text"
+                name="location"
+                placeholder="Enter location"
+                value="{{ location }}"
+            >
+
+            <select name="work_mode">
+                <option value="">All Work Modes</option>
+                <option value="Remote" {% if work_mode == "Remote" %}selected{% endif %}>Remote</option>
+                <option value="Hybrid" {% if work_mode == "Hybrid" %}selected{% endif %}>Hybrid</option>
+                <option value="On-site" {% if work_mode == "On-site" %}selected{% endif %}>On-site</option>
+            </select>
+
+            <button type="submit">Search Jobs</button>
+        </form>
+
+        <section>
+            {% for job in jobs %}
+                <article>
+                    <h3>{{ job.job_title }}</h3>
+                    <a href="{% url 'job_detail' job.id %}">View Details</a>
+
+                    <p><strong>Company:</strong> {{ job.company_name }}</p>
+                    <p><strong>Location:</strong> {{ job.location }}</p>
+                    <p><strong>Work Mode:</strong> {{ job.work_mode }}</p>
+                    <p><strong>Experience:</strong> {{ job.experience_level }}</p>
+                    <p><strong>Skills:</strong> {{ job.required_skills }}</p>
+                    <p>{{ job.description }}</p>
+
+                    <a href="{{ job.application_url }}" target="_blank" rel="noopener noreferrer">
+                        Apply Now
+                    </a>
+                </article>
+                <hr>
+            {% empty %}
+                <p>No job opportunities found.</p>
+            {% endfor %}
+        </section>
+    </main>
+
+</body>
+</html>
